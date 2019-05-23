@@ -4,6 +4,7 @@ import router from './router'
 import './registerServiceWorker'
 
 import Ionic from '@ionic/vue';
+
 Vue.use(Ionic);
 Vue.config.productionTip = false;
 

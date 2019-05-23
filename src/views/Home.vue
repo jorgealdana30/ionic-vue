@@ -1,16 +1,29 @@
 <template>
     <ionVuePage :title="App">
-        <ion-button @click="inicio" expand="block">
-            <ion-icon name="contact"></ion-icon>
-            Iniciar Sesión
-        </ion-button>
-        <ion-button @click="registro" expand="block">
-            Registrarse
-        </ion-button>
+        <ion-card>
+            <ion-button @click="inicio" expand="block">
+                <ion-icon name="contact"></ion-icon>
+                Iniciar Sesión
+            </ion-button>
+            <ion-button @click="registro" expand="block">
+                Registrarse
+            </ion-button>
+        </ion-card>
     </ionVuePage>
 </template>
 
 <script>
+    import firebase from 'firebase';
+    const config = {
+        apiKey: "AIzaSyCElzy1P_QnGBjN8X5DQrIHAm2j_Y_NTDw",
+        authDomain: "ionictest-a2f72.firebaseapp.com",
+        databaseURL: "https://ionictest-a2f72.firebaseio.com",
+        projectId: "ionictest-a2f72",
+        storageBucket: "ionictest-a2f72.appspot.com",
+        messagingSenderId: "361624898187",
+        appId: "1:361624898187:web:a2548b5749bc09a3"
+    };
+    let app = firebase.initializeApp(config);
     export default {
         methods: {
             inicio() {
@@ -30,7 +43,10 @@
                     }],
                     buttons: ['Cancelar', {
                         text: 'Ingresar', handler: () => {
-                            this.alert('Bienvenido', 'Gracias por ingresar', ['Aceptar'], true);
+                            let email = document.getElementById('correo').value, contrasena = document.getElementById('contrasena').value;
+                            firebase.auth().signInWithEmailAndPassword(email,contrasena).then(
+                                this.alert('Bienvenido', 'Gracias por ingresar', ['Aceptar'], true)
+                            );
                         }
                     }]
                 });
@@ -66,14 +82,24 @@
                         type: 'text'
                     },
                         {
-                            name: 'edad',
-                            id: 'edad',
-                            placeholder: 'Ingresa tu Edad',
-                            type: 'number'
-                        }],
+                            name: 'correo',
+                            id: 'correo',
+                            placeholder: 'Ingresa tu correo',
+                            type: 'email'
+                        },
+                        {
+                            name: 'contrasena',
+                            id: 'contrasena',
+                            placeholder: 'Ingresa tu contraseña',
+                            type: 'password'
+                        }
+                    ],
                     buttons: ['Cancelar', {
                         text: 'Registrate', handler: () => {
-                            this.alert('¡Gracias por registrarte!', 'Bienvenido al sistema, por favor logueate en el alert de inicio de sesion', ['Aceptar'], true);
+                            let email = document.getElementById('correo').value, contrasena = document.getElementById('contrasena').value;
+                            firebase.auth().createUserWithEmailAndPassword(email, contrasena).then(
+                                this.alert('¡Gracias por registrarte!', 'Bienvenido al sistema, por favor logueate en el alert de inicio de sesion', ['Aceptar'], true)
+                            );
                         }
                     }]
                 });
