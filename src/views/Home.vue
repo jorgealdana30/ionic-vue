@@ -1,7 +1,8 @@
 <template>
     <ionVuePage :title="App">
         <ion-button @click="inicio" expand="block">
-            <ion-icon name="contact"></ion-icon> Iniciar Sesión
+            <ion-icon name="contact"></ion-icon>
+            Iniciar Sesión
         </ion-button>
         <ion-button @click="registro" expand="block">
             Registrarse
@@ -12,8 +13,28 @@
 <script>
     export default {
         methods: {
-            inicio(){
-
+            inicio() {
+                let alert = this.$ionic.alertController.create({
+                    header: 'Inicia Sesión',
+                    message: 'Ingresa tu correo y contraseña',
+                    inputs: [{
+                        name: 'correo',
+                        id: 'correo',
+                        type: 'email',
+                        placeholder: 'Ingresa tu correo'
+                    }, {
+                        name: 'contrasena',
+                        id: 'contrasena',
+                        type: 'password',
+                        placeholder: 'Ingresa tu contraseña'
+                    }],
+                    buttons: ['Cancelar', {
+                        text: 'Ingresar', handler: () => {
+                            this.alert('Bienvenido', 'Gracias por ingresar', ['Aceptar'], true);
+                        }
+                    }]
+                });
+                alert.then(a => a.present());
             },
             alert(titulo, mensaje, botones, dismiss) {
                 let alert = this.$ionic.alertController.create(
@@ -21,7 +42,7 @@
                         header: titulo,
                         message: mensaje,
                         buttons: botones,
-                        backdropDismiss: false,
+                        backdropDismiss: dismiss,
                         translucent: true,
                     }
                 );
@@ -52,7 +73,7 @@
                         }],
                     buttons: ['Cancelar', {
                         text: 'Registrate', handler: () => {
-                            this.alert('¡Gracias por registrarte!', 'Bienvenido al sistema, por favor logueate en el alert de inicio de sesion',['Aceptar'], true);
+                            this.alert('¡Gracias por registrarte!', 'Bienvenido al sistema, por favor logueate en el alert de inicio de sesion', ['Aceptar'], true);
                         }
                     }]
                 });
