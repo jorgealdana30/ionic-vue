@@ -1,19 +1,17 @@
 <template>
-    <ionVuePage :title="App">
-        <ion-card>
-            <ion-button @click="inicio" expand="block">
-                <ion-icon name="contact"></ion-icon>
-                Iniciar Sesión
-            </ion-button>
-            <ion-button @click="registro" expand="block">
-                Registrarse
-            </ion-button>
-        </ion-card>
-    </ionVuePage>
+    <ion-app :title="App">
+        <ion-button @click="inicio" expand="full">
+            Iniciar Sesión
+        </ion-button>
+        <ion-button @click="registro" expand="full">
+            Registrarse
+        </ion-button>
+    </ion-app>
 </template>
 
 <script>
     import firebase from 'firebase';
+    import Index from './Index';
     const config = {
         apiKey: "AIzaSyCElzy1P_QnGBjN8X5DQrIHAm2j_Y_NTDw",
         authDomain: "ionictest-a2f72.firebaseapp.com",
@@ -23,8 +21,9 @@
         messagingSenderId: "361624898187",
         appId: "1:361624898187:web:a2548b5749bc09a3"
     };
-    let app = firebase.initializeApp(config);
+    firebase.initializeApp(config);
     export default {
+        name: 'home',
         methods: {
             inicio() {
                 let alert = this.$ionic.alertController.create({
@@ -43,10 +42,12 @@
                     }],
                     buttons: ['Cancelar', {
                         text: 'Ingresar', handler: () => {
-                            let email = document.getElementById('correo').value, contrasena = document.getElementById('contrasena').value;
-                            firebase.auth().signInWithEmailAndPassword(email,contrasena).then(
-                                this.alert('Bienvenido', 'Gracias por ingresar', ['Aceptar'], true)
+                            let email = document.getElementById('correo').value,
+                                contrasena = document.getElementById('contrasena').value;
+                                firebase.auth().signInWithEmailAndPassword(email, contrasena).then(
+                                // this.aler t('Bienvenido', 'Gracias por ingresar', ['Aceptar'], true)
                             );
+                            this.$router.push({name: 'index'})
                         }
                     }]
                 });
@@ -96,7 +97,8 @@
                     ],
                     buttons: ['Cancelar', {
                         text: 'Registrate', handler: () => {
-                            let email = document.getElementById('correo').value, contrasena = document.getElementById('contrasena').value;
+                            let email = document.getElementById('correo').value,
+                                contrasena = document.getElementById('contrasena').value;
                             firebase.auth().createUserWithEmailAndPassword(email, contrasena).then(
                                 this.alert('¡Gracias por registrarte!', 'Bienvenido al sistema, por favor logueate en el alert de inicio de sesion', ['Aceptar'], true)
                             );

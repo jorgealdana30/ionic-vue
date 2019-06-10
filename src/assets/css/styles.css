@@ -8,3 +8,7 @@ body{
     --background: #f44336;
 }
 
+#nav{
+    display: none;
+}
+
