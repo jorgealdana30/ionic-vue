@@ -1,11 +1,19 @@
 <template>
     <ion-app>
+            <ion-menu contentId="menu-content">
+                <ion-header>
+                    <ion-toolbar>
+                        <ion-title>Menu Principal</ion-title>
+                    </ion-toolbar>
+                </ion-header>
+            </ion-menu>
+            <ion-router-outlet id="menu-content" main></ion-router-outlet>
         <ion-header>
             <ion-toolbar color="dark">
                 <ion-buttons slot="start">
-                    <ion-menu-button auto-hide="false">
-                        <ion-icon name="menu"></ion-icon>
-                    </ion-menu-button>
+                    <ion-menu-toggle autoHide="false">
+                    <ion-menu-button></ion-menu-button>
+                    </ion-menu-toggle>
                 </ion-buttons>
                 <ion-buttons slot="secondary">
                     <ion-button>
@@ -18,11 +26,22 @@
                 <ion-title>Inicio</ion-title>
             </ion-toolbar>
         </ion-header>
+            <ion-card>
+                <ion-item>
+                    <ion-icon name="pin" slot="start"></ion-icon>
+                    <ion-label>ion-item in a card, icon left, button right</ion-label>
+                    <ion-button fill="outline" slot="end">View</ion-button>
+                </ion-item>
+                <ion-card-content>
+                    This is content, without any paragraph or header tags,
+                    within an ion-card-content element.
+                </ion-card-content>
+            </ion-card>
         <ion-tabs>
-            <ion-tab tab="home">Home Content</ion-tab>
-            <ion-tab tab="settings">Settings Content</ion-tab>
+            <ion-tab tab="index"></ion-tab>
+            <ion-tab tab="settings"></ion-tab>
             <ion-tab-bar slot="bottom">
-                <ion-tab-button tab="home">
+                <ion-tab-button tab="index">
                     <ion-label>Inicio</ion-label>
                     <ion-icon name="home"></ion-icon>
                     <ion-badge>1</ion-badge>
@@ -37,9 +56,7 @@
                 </ion-tab-button>
             </ion-tab-bar>
         </ion-tabs>
-
     </ion-app>
-
 </template>
 
 <script>
@@ -47,7 +64,7 @@
         name: "Index",
         methods: {
             logout() {
-
+                this.$router.push('/')
             }
         }
     }

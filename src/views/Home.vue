@@ -11,7 +11,7 @@
 
 <script>
     import firebase from 'firebase';
-    import Index from './Index';
+
     const config = {
         apiKey: "AIzaSyCElzy1P_QnGBjN8X5DQrIHAm2j_Y_NTDw",
         authDomain: "ionictest-a2f72.firebaseapp.com",
