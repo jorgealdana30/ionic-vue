@@ -12,3 +12,8 @@ body{
     display: none;
 }
 
+.fab2{
+    bottom: 60px!important;
+    visibility: visible;
+    right: 10px;
+}
