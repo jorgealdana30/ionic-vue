@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Index from './views/Index'
-import Settings from './views/Settings'
+import Perfil from './views/Perfil'
 
 Vue.use(Router);
 
@@ -29,9 +29,9 @@ export default new Router({
       component: Index
     },
     {
-      path: '/settings',
-      name: 'settings',
-      component: Settings
+      path: '/perfil',
+      name: 'perfil',
+      component: Perfil
     }
   ]
 })

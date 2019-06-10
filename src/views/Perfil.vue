@@ -2,14 +2,14 @@
     <ion-app>
         <ion-tabs>
             <ion-tab tab="index"></ion-tab>
-            <ion-tab tab="settings"></ion-tab>
+            <ion-tab tab="perfil"></ion-tab>
             <ion-tab-bar slot="bottom">
                 <ion-tab-button tab="index">
                     <ion-label>Inicio</ion-label>
                     <ion-icon name="home"></ion-icon>
                     <ion-badge>1</ion-badge>
                 </ion-tab-button>
-                <ion-tab-button tab="settings">
+                <ion-tab-button tab="perfil">
                     <ion-label>Perfil</ion-label>
                     <ion-icon name="person"></ion-icon>
                 </ion-tab-button>
@@ -24,7 +24,7 @@
 
 <script>
     export default {
-        name: "settings"
+        name: "perfil"
     }
 </script>
 
